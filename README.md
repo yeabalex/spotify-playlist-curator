@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Spotify Playlist Curator
+
+Welcome to the Spotify Playlist Curator app! This application helps you discover and curate personalized playlists based on your favorite artists, tracks, and genres.
+
+## Features
+
+- Fetch recommended songs based on seed artists, tracks, and genres
+- Retrieve detailed metadata for artists and tracks
+- Secure authentication with Spotify API using client credentials flow
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v14 or later)
+- npm or yarn
+- Spotify Developer account and API credentials
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/spotify-playlist-curator.git
+   cd spotify-playlist-curator
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-## Learn More
+3. Create a `.env` file in the root directory and add your Spotify API credentials:
+   ```
+   NEXT_PUBLIC_SPOTIFY_CLIENT_ID=your_client_id
+   NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET=your_client_secret
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start the development server:
+   ```
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Use the `FetchRecommendedSongs` class to get song recommendations:
+   ```typescript
+   const fetcher = new FetchRecommendedSongs(artists, tracks, genres, token);
+   const recommendations = await fetcher.fetchRecommendedSongs();
+   ```
 
-## Deploy on Vercel
+2. Retrieve artist or track metadata using the `GetMetadata` class:
+   ```typescript
+   const metadata = new GetMetadata(artistId, trackId);
+   const artistData = await metadata.getArtist(token);
+   const trackData = await metadata.getTrack(token);
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Future Enhancements
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Here are some planned enhancements:
+
+1. Server-side requests: Implement server-side API calls to enhance security and prevent exposure of sensitive information on the client-side.
+
+2. Save generated playlists: Add functionality to save the curated playlists directly to the user's Spotify account.
+
+3. User authentication: Implement Spotify user authentication to allow access to user-specific data and enable playlist saving.
+
+4. Improved recommendation algorithms: Enhance the recommendation system to provide more accurate and diverse song suggestions.
+
+5. Custom playlist parameters: Allow users to specify additional parameters like tempo, popularity, and audio features for more tailored recommendations.
+
+I am open to contributions to these enhancements. If you're interested in working on any of these features, please feel free to submit a Pull Request.
