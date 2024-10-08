@@ -20,7 +20,7 @@ Welcome to the Spotify Playlist Curator app! This application helps you discover
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/spotify-playlist-curator.git
+   git clone https://github.com/yeabalex/spotify-playlist-curator.git
    cd spotify-playlist-curator
    ```
 
